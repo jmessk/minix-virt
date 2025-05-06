@@ -1,0 +1,13 @@
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - UID=1000
+        - GID=1000
+    volumes:
+      - .:/home/user/minix-virt
+    user: user
+    working_dir: /home/user/minix-virt
+    tty: true
