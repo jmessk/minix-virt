@@ -1,12 +1,17 @@
 FROM ubuntu:jammy-20250415.1
 
 RUN apt-get update && apt-get install -y \
-    build-essential
+    build-essential \
+    bsdmainutils
 
 COPY ./setuptools /var/tmp/setuptools
 
 WORKDIR /var/tmp/setuptools
-RUN make install
+
+RUN make && \ 
+    make install && \
+    make setup
+
 RUN rm -rf /var/tmp/setuptools
 
 ARG UID
